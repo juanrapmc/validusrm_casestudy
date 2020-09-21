@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./casestudy.api/
+    image: casestudy.api
+    container_name: casestudy.api
+    command: python casestudy/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./casestudy.api/:/code
+    ports:
+      - 8000:8000
+
+volumes:
+  capitalcalc.api:
