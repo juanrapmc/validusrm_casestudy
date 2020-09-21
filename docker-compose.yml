@@ -11,6 +11,18 @@ services:
       - ./casestudy.api/:/code
     ports:
       - 8000:8000
+  web:
+    build:
+      context: ./casestudy.web/
+    image: casestudy.web
+    container_name: casestudy.web
+    command: npx vue-cli-service serve
+    volumes:
+      - ./casestudy.web/:/code
+    ports:
+      - 8080:8080
+    depends_on:
+      - api
 
 volumes:
   capitalcalc.api:
