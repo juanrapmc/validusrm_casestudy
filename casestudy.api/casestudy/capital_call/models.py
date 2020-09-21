@@ -20,6 +20,6 @@ class FundCall(models.Model):
 
 class FundInvestment(models.Model):
     call = models.ForeignKey(FundCall, on_delete=models.CASCADE, related_name='call_investments')
-    fundcall = models.ForeignKey(Fund, on_delete=models.CASCADE, related_name='fund_investments')
+    fund = models.ForeignKey(Fund, on_delete=models.CASCADE, related_name='fund_investments')
     commitment_id = models.IntegerField()
     investment_amount = models.DecimalField(max_digits=999, decimal_places=2)
