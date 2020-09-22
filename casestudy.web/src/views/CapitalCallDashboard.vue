@@ -1,6 +1,7 @@
 <template>
   <CapitalCallBase>
     <template v-slot:content-left>
+      <FundInvestments />
     </template>
     <template v-slot:content-right>
     </template>
@@ -10,19 +11,17 @@
 <script>
 // @ is an alias to /src
 import CapitalCallBase from '@/layouts/Base.vue'
+import FundInvestments from '@/components/FundInvestments.vue'
 
 export default {
   name: 'CapitalCallDashboard',
   components: {
-    CapitalCallBase
+    CapitalCallBase,
+    FundInvestments,
   },
   methods: {
-    getDashboardData() {
-      // TODO: Get fund call and fund investments
-    }
   },
   mounted() {
-    this.getDashboardData()
   }
 }
 </script>
