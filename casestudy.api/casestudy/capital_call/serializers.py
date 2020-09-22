@@ -10,6 +10,7 @@ class FundSerializer(serializers.ModelSerializer):
 
 
 class FundCommitmentSerializer(serializers.ModelSerializer):
+    fund = FundSerializer()
 
     class Meta:
         model = models.FundCommitment
