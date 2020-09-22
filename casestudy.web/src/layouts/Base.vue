@@ -3,12 +3,9 @@
     <NavBar />
     <v-content class="px-auto">
       <v-container fluid>
-        <v-row>
-          <v-col cols="6" sm="12" md="6">
-            <slot name="content-left"></slot>
-          </v-col>
-          <v-col cols="6" sm="12" md="6">
-            <slot name="content-right"></slot>
+        <v-row align="center" justify="center">
+          <v-col cols="8">
+            <slot name="content-center"></slot>
           </v-col>
         </v-row>
       </v-container>

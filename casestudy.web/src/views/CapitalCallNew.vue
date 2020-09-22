@@ -1,6 +1,6 @@
 <template>
   <CapitalCallBase>
-    <template v-slot:content-left>
+    <template v-slot:content-center>
       <CallCalculator />
     </template>
   </CapitalCallBase>
