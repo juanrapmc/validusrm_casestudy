@@ -86,8 +86,54 @@ export default {
     }
   },
   methods: {
-    confirm() {
-      //
+    async confirm() {
+      const calldata = {
+        date: this.date,
+        investment_name: this.investment_name,
+        capital_requirement: this.investment_requirement
+      }
+
+      let call_id = null
+      // Insert fund call
+      try {
+        const resp = await this.axios({
+          url: 'http://127.0.0.1:8000/api/fundcalls/',
+          method: 'POST',
+          data: calldata
+        })
+        call_id = resp.data.id
+      } catch(error) {
+        console.log(error)
+      }
+
+      // Insert fund investments
+      if (call_id !== null) {
+        this.fundcommitments.forEach(async (fund, i) => {
+          if (fund['drawdown_notice'] > 0) {
+            try {
+              await this.axios({
+                url: 'http://127.0.0.1:8000/api/fundinvestments/',
+                method: 'POST',
+                data: {
+                  commitment_id: i+1,
+                  investment_amount: fund['drawdown_notice'],
+                  call: call_id,
+                  fund: fund['fund']['id']
+                }
+              })
+              await this.axios({
+                url: `http://127.0.0.1:8000/api/fundcommitments/${fund['fund']['id']}/`,
+                method: 'PATCH',
+                data: {
+                  drawn_amount: fund['drawn_new']
+                }
+              })
+            } catch (error) {
+              console.log(error)
+            }
+          }
+        })
+      }
     },
     fifo() {
       let remaining_investment_req = Number(this.investment_requirement)
@@ -120,18 +166,14 @@ export default {
           this.fifo()
       }
 
-      // TODO: update funds drawdown table
       let fundsumm = {}
       this.fundcommitments.forEach(fc => {
-        console.log(fc['fund']['id'])
         if (fc['fund']['id'] in fundsumm) {
           fundsumm[fc['fund']['id']] += Number(fc['drawdown_notice'])
         } else {
           fundsumm[fc['fund']['id']] = Number(fc['drawdown_notice'])
         }
       })
-      console.log(fundsumm)
-      // update this.funds
       this.funds.forEach(f => {
         f['drawdown_notice'] = fundsumm[f['id']]
       })
