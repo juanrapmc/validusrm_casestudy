@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import CapitalCallDashboard from '../views/CapitalCallDashboard'
+import CapitalCallNew from '../views/CapitalCallNew'
 Vue.use(VueRouter)
 
 const routes = [
@@ -9,6 +10,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/capitalcall/dashboard',
+    name: 'CapitalCall',
+    component: CapitalCallDashboard
+  },
+  {
+    path: '/capitalcall/new',
+    name: 'NewCall',
+    component: CapitalCallNew
   },
   {
     path: '/about',
