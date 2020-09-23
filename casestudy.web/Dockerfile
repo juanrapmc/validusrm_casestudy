@@ -7,7 +7,7 @@ FROM node:lts-alpine as build-stage
 # Environment variables default
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
-ENV VUE_APP_API_URL=http://172.19.147.114/api
+ENV VUE_APP_API_URL=http://127.0.0.1/api
 
 # Set working directory
 WORKDIR /code
