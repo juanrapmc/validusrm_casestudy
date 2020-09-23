@@ -13,4 +13,7 @@ WORKDIR /code
 
 # Install dependencies
 COPY package*.json ./
+RUN npm install -g @vue/cli
 RUN npm install
+
+COPY . .
