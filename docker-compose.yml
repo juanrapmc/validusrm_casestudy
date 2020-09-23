@@ -1,14 +1,23 @@
 version: '3.8'
 
 services:
+  nginx:
+    container_name: casestudy.nginx
+    image: nginx:stable-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
   api:
     build:
       context: ./casestudy.api/
     image: casestudy.api
     container_name: casestudy.api
-    command: python casestudy/manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./casestudy.api/:/code
+    #command: python casestudy/manage.py runserver 0.0.0.0:8000
+    #volumes:
+    #  - ./casestudy.api/:/code
     ports:
       - 8000:8000
   web:
@@ -16,13 +25,13 @@ services:
       context: ./casestudy.web/
     image: casestudy.web
     container_name: casestudy.web
-    command: npx vue-cli-service serve
-    volumes:
-      - ./casestudy.web/:/code
-    ports:
-      - 8080:8080
+    #command: npm run serve
+    #volumes:
+    #  - ./casestudy.web/:/code
+    #ports:
+    #  - 8080:8080
     depends_on:
       - api
 
-volumes:
-  capitalcalc.api:
+#volumes:
+#  capitalcalc.api:

@@ -1,0 +1,80 @@
+[
+    {
+        "model": "capital_call.fund",
+        "pk": 1,
+        "fields": {
+            "name": "Fund 1"
+        }
+    },
+    {
+        "model": "capital_call.fund",
+        "pk": 2,
+        "fields": {
+            "name": "Fund 2"
+        }
+    },
+    {
+        "model": "capital_call.fund",
+        "pk": 3,
+        "fields": {
+            "name": "Fund 3"
+        }
+    },
+    {
+        "model": "capital_call.fund",
+        "pk": 4,
+        "fields": {
+            "name": "Fund 4"
+        }
+    },
+    {
+        "model": "capital_call.fundcommitment",
+        "pk": 1,
+        "fields": {
+            "fund": 1,
+            "date": "2020-09-08",
+            "amount": "10000000.00",
+            "drawn_amount": "10000000.00"
+        }
+    },
+    {
+        "model": "capital_call.fundcommitment",
+        "pk": 2,
+        "fields": {
+            "fund": 2,
+            "date": "2020-09-09",
+            "amount": "15000000.00",
+            "drawn_amount": "15000000.00"
+        }
+    },
+    {
+        "model": "capital_call.fundcommitment",
+        "pk": 3,
+        "fields": {
+            "fund": 3,
+            "date": "2020-09-09",
+            "amount": "10000000.00",
+            "drawn_amount": "10000000.00"
+        }
+    },
+    {
+        "model": "capital_call.fundcommitment",
+        "pk": 4,
+        "fields": {
+            "fund": 4,
+            "date": "2020-09-09",
+            "amount": "15000000.00",
+            "drawn_amount": "15000000.00"
+        }
+    },
+    {
+        "model": "capital_call.fundcommitment",
+        "pk": 5,
+        "fields": {
+            "fund": 1,
+            "date": "2020-09-09",
+            "amount": "10000000.00",
+            "drawn_amount": "10000000.00"
+        }
+    }
+]

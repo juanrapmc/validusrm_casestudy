@@ -97,7 +97,7 @@ export default {
       // Insert fund call
       try {
         const resp = await this.axios({
-          url: 'http://127.0.0.1:8000/api/fundcalls/',
+          url: `${process.env.VUE_APP_API_URL}/fundcalls/`,
           method: 'POST',
           data: calldata
         })
@@ -112,7 +112,7 @@ export default {
           if (fund['drawdown_notice'] > 0) {
             try {
               await this.axios({
-                url: 'http://127.0.0.1:8000/api/fundinvestments/',
+                url: `${process.env.VUE_APP_API_URL}/fundinvestments/`,
                 method: 'POST',
                 data: {
                   commitment_id: i+1,
@@ -122,7 +122,7 @@ export default {
                 }
               })
               await this.axios({
-                url: `http://127.0.0.1:8000/api/fundcommitments/${fund['fund']['id']}/`,
+                url: `${process.env.VUE_APP_API_URL}/fundcommitments/${fund['fund']['id']}/`,
                 method: 'PATCH',
                 data: {
                   drawn_amount: fund['drawn_new']
@@ -130,10 +130,15 @@ export default {
               })
             } catch (error) {
               console.log(error)
+              return
             }
           }
         })
       }
+      this.confirm_disabled = true
+      this.getCommitments()
+      this.getFunds()
+      alert('Data saved')
     },
     fifo() {
       let remaining_investment_req = Number(this.investment_requirement)
@@ -179,9 +184,10 @@ export default {
       })
     },
     async getCommitments() {
+      this.fundcommitments = []
       try {
         const commitments = await this.axios({
-          url: 'http://127.0.0.1:8000/api/fundcommitments/',
+          url: `${process.env.VUE_APP_API_URL}/fundcommitments/`,
           method: 'GET',
         })
         commitments.data.forEach(commitment => {
@@ -194,9 +200,10 @@ export default {
       }
     },
     async getFunds() {
+      this.funds = []
       try {
         const funds = await this.axios({
-          url: 'http://127.0.0.1:8000/api/funds/',
+          url: `${process.env.VUE_APP_API_URL}/funds/`,
           method: 'GET',
         })
 

@@ -31,11 +31,11 @@ export default {
     async getData() {
       try {
         const fundcalls = await this.axios({
-          url: 'http://127.0.0.1:8000/api/fundcalls/',
+          url: `${process.env.VUE_APP_API_URL}/fundcalls/`,
           method: 'GET'
         })
         const fundinvestments = await this.axios({
-          url: 'http://127.0.0.1:8000/api/fundinvestments',
+          url: `${process.env.VUE_APP_API_URL}/fundinvestments/`,
           method: 'GET'
         })
 
@@ -56,7 +56,7 @@ export default {
     async getFunds() {
       try {
         const funds = await this.axios({
-          url: 'http://127.0.0.1:8000/api/funds/',
+          url: `${process.env.VUE_APP_API_URL}/funds/`,
           method: 'GET'
         })
         funds.data.forEach(f => {

@@ -25,7 +25,7 @@ SECRET_KEY = '52@z_z@hiv1-t^1^8et_jb2(hc=@gdp_1k6&cw%z5!^txts3_o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'apiservice']
 
 
 # Application definition
